@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<h2>Company</h2>
 <p>
   <strong>Name:</strong>
   <%= @company.name %>
@@ -8,7 +8,10 @@
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>
 
-<%= form_with(model: [ @company, Employee.new ], local: true) do |form| %>
+<h2>Employee</h2>
+
+
+<%= form_with(model: [ @company, @employee ]) do |form| %>
   <div class="field">
     <%= form.label :first_name %>
     <%= form.text_field :first_name %>
@@ -23,6 +26,27 @@
   </div>
   <div class="field">
     <%= form.label :area %>
-    <%= form.select :area %>
+    <%= form.select :area_id, @areas.collect{ |area| [area.name, area.id] }, prompt: "select area" %>
   </div>
+   <%= form.submit %>
 <% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @company.employees.each do |employee| %>
+      <tr>
+        <td><%= employee.first_name %></td>
+        <td><%= employee.last_name %></td>
+        <td><%= employee.email %></td>
+        <td><%= employee.area.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
