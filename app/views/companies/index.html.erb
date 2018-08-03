@@ -6,13 +6,13 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Count</th>
+<th>Count</th>
       <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @companies.each do |company| %>
+    <% @companies.each do |company, area| %>
       <tr>
         <td><%= link_to "#{company.name}", company %></td>
         <td><%= company.employees.count %></td>
