@@ -46,6 +46,7 @@
         <td><%= employee.last_name %></td>
         <td><%= employee.email %></td>
         <td><%= employee.area.name %></td>
+        <td><%= link_to 'Destroy', company_employee_path(@company, employee), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
